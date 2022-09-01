@@ -4,7 +4,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo "Java VERSION"
+                sh 'java -version'
+                
+                echo "Maven VERSION"
+                sh 'mvn -version'
+                
+                echo 'building project...'
+                sh "mvn compile"
+                sh "mvn package"
+                
+                //sh "mvn test"
+                sh "mvn clean install"
             }
         }
         stage('Test') {
